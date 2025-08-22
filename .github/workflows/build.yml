@@ -26,7 +26,14 @@ jobs:
           sdkmanager --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
           yes | sdkmanager --licenses
 
-      - name: Build with system Gradle
+      # 👇 Pin Gradle to 8.2.1 (compatible with AGP 8.2.2)
+      - name: Set up Gradle 8.2.1
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: '8.2.1'
+          cache-disabled: true
+
+      - name: Build with Gradle 8.2.1
         run: gradle assembleDebug --stacktrace --warning-mode all
 
       - name: Upload APK

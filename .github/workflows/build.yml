@@ -3,7 +3,7 @@ name: Android CI
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:   # lets you run it manually from Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,8 +21,13 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Install Android platform & build-tools
+        run: |
+          sdkmanager --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          yes | sdkmanager --licenses
+
       - name: Build with system Gradle
-        run: gradle assembleDebug --stacktrace
+        run: gradle assembleDebug --stacktrace --warning-mode all
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

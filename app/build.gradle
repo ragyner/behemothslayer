@@ -7,13 +7,13 @@ android {
     namespace 'com.king.behemoth'
     compileSdk 34
 
-    defaultConfig {
-        applicationId "com.king.behemoth"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
-    }
+   defaultConfig {
+    applicationId "com.king.behemoth"
+    minSdk 26
+    targetSdk 34
+    versionCode 2    // <- increment this
+    versionName "1.0.1"
+}
 
     buildTypes {
         release {

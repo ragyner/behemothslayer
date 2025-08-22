@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // inflate our XML layout
-        // (logic will come later: XP math, reminders, etc.)
+        // ✅ Use our XML layout (no inline TextView!)
+        setContentView(R.layout.activity_main)
     }
 }
+

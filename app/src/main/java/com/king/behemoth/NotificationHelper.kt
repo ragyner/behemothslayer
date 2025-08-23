@@ -18,7 +18,15 @@ object NotificationHelper {
         Toast.makeText(ctx.applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 
-    fun notify(ctx: Context, title: String, message: String, id: Int = System.currentTimeMillis().toInt()) {
+    // ✅ Compatibility shim for older code (BootReceiver calls this)
+    fun createChannels(ctx: Context) = ensureChannel(ctx)
+
+    fun notify(
+        ctx: Context,
+        title: String,
+        message: String,
+        id: Int = System.currentTimeMillis().toInt()
+    ) {
         try {
             ensureChannel(ctx)
             val smallIcon = getSafeSmallIcon(ctx)
@@ -51,5 +59,5 @@ object NotificationHelper {
         val idBell = res.getIdentifier("ic_notification", "drawable", pkg)
         if (idBell != 0) return idBell
         return android.R.drawable.ic_dialog_info
-        }
+    }
 }

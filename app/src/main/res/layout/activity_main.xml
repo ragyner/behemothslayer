@@ -19,7 +19,6 @@
             android:textStyle="bold"
             android:paddingBottom="12dp"/>
 
-        <!-- XP bar -->
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
@@ -27,23 +26,55 @@
             android:progress="20"
             android:max="100"
             android:progressTint="#FF9BB3"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Behemoth HP bar -->
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="8dp"
             android:progress="65"
             android:max="100"
-            android:progressTint="#39D353"/>
+            android:progressTint="#39D353"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/habitsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:text="(habits will render here)"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/btnSchedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Schedule Reminders" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Cancel All" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scaffold only — habits, reminders, avatar, seasons coming."
-            android:textColor="#BBBBBB"
-            android:textSize="14sp"
+            android:text="Tip: allow notifications + set battery to Unrestricted for reliability."
+            android:textColor="#888888"
+            android:textSize="12sp"
             android:layout_marginTop="12dp"/>
     </LinearLayout>
 </ScrollView>

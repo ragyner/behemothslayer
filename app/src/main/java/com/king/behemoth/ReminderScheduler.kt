@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.provider.AlarmClock
 import android.util.Log
 import java.util.Calendar
 
@@ -35,17 +34,20 @@ object ReminderScheduler {
             .putExtra("title", "Behemoth Slayer")
             .putExtra("message", msg)
 
-        // Use AlarmClock (reliable, exact without special permission)
+        // Use AlarmManager.AlarmClockInfo (reliable, exact without special permission)
         val showIntent = Intent(ctx, MainActivity::class.java)
-        val acInfo = AlarmClock.AlarmClockInfo(whenMillis, PendingIntent.getActivity(
-            ctx, requestCode, showIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        ))
+        val acInfo = AlarmManager.AlarmClockInfo(
+            whenMillis,
+            PendingIntent.getActivity(
+                ctx, requestCode, showIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        )
 
         val am = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         am.setAlarmClock(acInfo, pendingIntent(ctx, habit, requestCode))
 
-        Log.d(TAG, "Scheduled ${habit.name} at ${Calendar.getInstance().apply{timeInMillis=whenMillis}.time}")
+        Log.d(TAG, "Scheduled ${habit.name} at ${Calendar.getInstance().apply { timeInMillis = whenMillis }.time}")
     }
 
     private fun nextTriggerMillis(habit: Habit): Long {

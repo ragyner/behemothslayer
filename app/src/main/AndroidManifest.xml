@@ -9,12 +9,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Behemoth Slayer"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App">
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
 
         <!-- Your main activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true"> <!-- 👈 required for Android 12+ -->
+            android:exported="true"> <!-- required for Android 12+ -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

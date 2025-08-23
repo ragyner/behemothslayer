@@ -7,32 +7,33 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    // Android 13+ notification permission
-    private val requestPostNotifications = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { granted ->
-        if (!granted) {
-            NotificationHelper.toast(this, "Notifications disabled. Reminders will still schedule.")
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Keep your existing UI; no setContentView here to avoid breaking your layout.
 
-        ensureNotificationPermission()
-        ensureExactAlarmPermission()   // 👈 This fixes your “needs SCHEDULE_EXACT_ALARM” error
-    }
+        // ✅ Show a real UI so you don't get a black screen
+        setContentView(R.layout.activity_main)
 
-    private fun ensureNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            requestPostNotifications.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+        // Buttons
+        findViewById<Button>(R.id.btnSchedule).setOnClickListener {
+            ReminderScheduler.scheduleAll(this)
         }
+        findViewById<Button>(R.id.btnCancel).setOnClickListener {
+            ReminderScheduler.cancelAll(this)
+            NotificationHelper.toast(this, "Reminders cancelled")
+        }
+
+        // Ask for POST_NOTIFICATIONS (Android 13+). If denied, we still run.
+        if (Build.VERSION.SDK_INT >= 33) {
+            requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+        }
+
+        // Ask user to enable "Exact alarms" if needed (Android 12+).
+        ensureExactAlarmPermission()
     }
 
     private fun ensureExactAlarmPermission() {
@@ -40,14 +41,12 @@ class MainActivity : AppCompatActivity() {
             val am = getSystemService(Context.ALARM_SERVICE) as AlarmManager
             if (!am.canScheduleExactAlarms()) {
                 try {
-                    // Directly open the exact-alarm permission screen for this app
                     val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
                         data = Uri.parse("package:$packageName")
                     }
                     startActivity(intent)
                     NotificationHelper.toast(this, "Enable \"Allow exact alarms\" for Behemoth Slayer.")
-                } catch (e: Exception) {
-                    // Fallback: open app settings page
+                } catch (_: Exception) {
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
                         data = Uri.parse("package:$packageName")
                     }

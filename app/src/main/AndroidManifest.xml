@@ -8,7 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
 
-        <!-- Launcher activity must declare exported when it has an intent-filter -->
+        <!-- ✅ Only this activity should have the LAUNCHER intent-filter -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

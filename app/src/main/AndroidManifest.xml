@@ -8,7 +8,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
 
-        <!-- ✅ Only this activity should have the LAUNCHER intent-filter -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -10,9 +10,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Title -->
         <TextView
-            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Today’s Battle"
@@ -21,91 +19,31 @@
             android:textStyle="bold"
             android:paddingBottom="12dp"/>
 
-        <!-- Card: XP + Behemoth HP -->
-        <LinearLayout
+        <!-- XP bar -->
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#1E1E1E"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp"
-            android:elevation="2dp">
+            android:layout_height="8dp"
+            android:progress="20"
+            android:max="100"
+            android:progressTint="#FF9BB3"
+            android:layout_marginBottom="16dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XP"
-                android:textColor="#FFD6E0"
-                android:textStyle="bold"/>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:progress="20"
-                android:max="100"
-                android:progressTint="#FF9BB3"
-                android:indeterminate="false"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Behemoth HP"
-                android:textColor="#9ECFFF"
-                android:textStyle="bold"/>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:progress="65"
-                android:max="100"
-                android:progressTint="#39D353"
-                android:indeterminate="false"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="This is the scaffold. We’ll add habits, reminders, avatar, seasons, halls, etc."
-                android:textColor="#BBBBBB"
-                android:textSize="14sp"
-                android:layout_marginTop="12dp"/>
-        </LinearLayout>
-
-        <!-- Card: Habits -->
-        <LinearLayout
+        <!-- Behemoth HP bar -->
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#1E1E1E"
-            android:padding="16dp"
-            android:elevation="2dp">
+            android:layout_height="8dp"
+            android:progress="65"
+            android:max="100"
+            android:progressTint="#39D353"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Habits"
-                android:textColor="#FFD6E0"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="• Wake • Sleep • Shower • Laundry • Groceries • Car • Hair • Gym (Fri/Sat)"
-                android:textColor="#DDDDDD"/>
-        </LinearLayout>
-
-        <!-- Footer -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This is a demo build • More coming"
-            android:textColor="#BB8888"
-            android:layout_marginTop="12dp"
-            android:textAlignment="center"/>
+            android:text="Scaffold only — habits, reminders, avatar, seasons coming."
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:layout_marginTop="12dp"/>
     </LinearLayout>
 </ScrollView>
